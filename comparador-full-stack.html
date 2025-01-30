@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador de Materiales</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F4F7FB; /* Color de fondo más claro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container for the comparison */
+        .comparador-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Column Styles */
+        .comparador-column {
+            background-color: #FFFFFF; /* Fondo blanco para las columnas */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .comparador-column:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Select Styling */
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: #333333; /* Color gris oscuro */
+            background-color: #F5F5F5; /* Fondo gris claro */
+            border: 1px solid #E0E0E0; /* Borde gris */
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease, border 0.3s ease;
+            cursor: pointer;
+        }
+
+        select:focus {
+            border-color: #007BFF; /* Color azul para el borde al enfocar */
+            background-color: #E9F5FF; /* Fondo azul claro */
+            outline: none;
+        }
+
+        /* Image Styles */
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Title */
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333333; /* Gris oscuro para el título */
+            margin-bottom: 12px;
+        }
+
+        /* Paragraphs */
+        p {
+            font-size: 14px;
+            color: #666666; /* Gris para los textos */
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #007BFF; /* Azul para el fondo del botón */
+            color: #FFFFFF; /* Blanco para el texto */
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+            transform: translateY(-5px);
+        }
+
+        /* Media Queries for responsiveness */
+        @media screen and (max-width: 768px) {
+            .comparador-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .comparador-column {
+                padding: 20px;
+            }
+
+            select {
+                padding: 10px;
+            }
+
+            button {
+                padding: 12px;
+            }
+        }
+        .material-column {
+            width: 30%;
+            float: left;
+            margin-right: 3%;
+            text-align: center;
+        }
+        .material-column img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="material-column">
+        <select id="material1" onchange="updateMaterialInfo(1)">
+            <option value="material1">Mármol</option>
+            <option value="material2">Granito</option>
+            <option value="material3">Cuarzo</option>
+            <option value="material4">Piedra</option>
+            <option value="material5">Madera</option>
+        </select>
+        <div id="name1"></div>
+        <img id="image1" src="" alt="Material 1">
+        <div id="type1"></div>
+        <div id="scratch1"></div>
+        <div id="stain1"></div>
+        <div id="texture1"></div>
+        <div id="maintenance1"></div>
+        <div id="temp1"></div>
+        <div id="finish1"></div>
+        <div id="applications1"></div>
+        <button>Ver más sobre este material</button>
+    </div>
+
+    <div class="material-column">
+        <select id="material2" onchange="updateMaterialInfo(2)">
+            <option value="material1">Mármol</option>
+            <option value="material2">Granito</option>
+            <option value="material3">Cuarzo</option>
+            <option value="material4">Piedra</option>
+            <option value="material5">Madera</option>
+        </select>
+        <div id="name2"></div>
+        <img id="image2" src="" alt="Material 2">
+        <div id="type2"></div>
+        <div id="scratch2"></div>
+        <div id="stain2"></div>
+        <div id="texture2"></div>
+        <div id="maintenance2"></div>
+        <div id="temp2"></div>
+        <div id="finish2"></div>
+        <div id="applications2"></div>
+        <button>Ver más sobre este material</button>
+    </div>
+
+    <div class="material-column">
+        <select id="material3" onchange="updateMaterialInfo(3)">
+            <option value="material1">Mármol</option>
+            <option value="material2">Granito</option>
+            <option value="material3">Cuarzo</option>
+            <option value="material4">Piedra</option>
+            <option value="material5">Madera</option>
+        </select>
+        <div id="name3"></div>
+        <img id="image3" src="" alt="Material 3">
+        <div id="type3"></div>
+        <div id="scratch3"></div>
+        <div id="stain3"></div>
+        <div id="texture3"></div>
+        <div id="maintenance3"></div>
+        <div id="temp3"></div>
+        <div id="finish3"></div>
+        <div id="applications3"></div>
+        <button>Ver más sobre este material</button>
+    </div>
+
+    <script>
+        function updateMaterialInfo(column) {
+            const material = document.getElementById(`material${column}`).value;
+            const name = document.getElementById(`name${column}`);
+            const image = document.getElementById(`image${column}`);
+            const type = document.getElementById(`type${column}`);
+            const scratch = document.getElementById(`scratch${column}`);
+            const stain = document.getElementById(`stain${column}`);
+            const texture = document.getElementById(`texture${column}`);
+            const maintenance = document.getElementById(`maintenance${column}`);
+            const temp = document.getElementById(`temp${column}`);
+            const finish = document.getElementById(`finish${column}`);
+            const applications = document.getElementById(`applications${column}`);
+
+            const materialsData = {
+                material1: {
+                    name: "Material 1 - Mármol",
+                    image: "https://via.placeholder.com/300x200?text=M%C3%A1rmol",
+                    type: "Tipo: Mármol",
+                    scratch: "Resistencia al Rayado: Alta",
+                    stain: "Resistencia a las Manchas: Media",
+                    texture: "Textura: Lisa",
+                    maintenance: "Mantenimiento: Bajo",
+                    temp: "Resistencia a la Temperatura: Alta",
+                    finish: "Acabado: Pulido",
+                    applications: "Estilo/Aplicaciones recomendadas: Cocina, Baño"
+                },
+                material2: {
+                    name: "Material 2 - Granito",
+                    image: "https://via.placeholder.com/300x200?text=Granito",
+                    type: "Tipo: Granito",
+                    scratch: "Resistencia al Rayado: Alta",
+                    stain: "Resistencia a las Manchas: Baja",
+                    texture: "Textura: Rugosa",
+                    maintenance: "Mantenimiento: Medio",
+                    temp: "Resistencia a la Temperatura: Alta",
+                    finish: "Acabado: Mate",
+                    applications: "Estilo/Aplicaciones recomendadas: Exterior, Cocina"
+                },
+                material3: {
+                    name: "Material 3 - Cuarzo",
+                    image: "https://via.placeholder.com/300x200?text=Cuarzo",
+                    type: "Tipo: Cuarzo",
+                    scratch: "Resistencia al Rayado: Media",
+                    stain: "Resistencia a las Manchas: Alta",
+                    texture: "Textura: Suave",
+                    maintenance: "Mantenimiento: Bajo",
+                    temp: "Resistencia a la Temperatura: Media",
+                    finish: "Acabado: Brillante",
+                    applications: "Estilo/Aplicaciones recomendadas: Cocina, Baño"
+                },
+                material4: {
+                    name: "Material 4 - Piedra",
+                    image: "https://via.placeholder.com/300x200?text=Piedra",
+                    type: "Tipo: Piedra",
+                    scratch: "Resistencia al Rayado: Alta",
+                    stain: "Resistencia a las Manchas: Baja",
+                    texture: "Textura: Rugosa",
+                    maintenance: "Mantenimiento: Alto",
+                    temp: "Resistencia a la Temperatura: Alta",
+                    finish: "Acabado: Mate",
+                    applications: "Estilo/Aplicaciones recomendadas: Exteriores"
+                },
+                material5: {
+                    name: "Material 5 - Madera",
+                    image: "https://via.placeholder.com/300x200?text=Madera",
+                    type: "Tipo: Madera",
+                    scratch: "Resistencia al Rayado: Media",
+                    stain: "Resistencia a las Manchas: Alta",
+                    texture: "Textura: Lisa",
+                    maintenance: "Mantenimiento: Medio",
+                    temp: "Resistencia a la Temperatura: Media",
+                    finish: "Acabado: Mate",
+                    applications: "Estilo/Aplicaciones recomendadas: Interiores"
+                }
+            };
+
+            const materialData = materialsData[material];
+
+            name.textContent = materialData.name;
+            image.src = materialData.image;
+            type.textContent = materialData.type;
+            scratch.textContent = materialData.scratch;
+            stain.textContent = materialData.stain;
+            texture.textContent = materialData.texture;
+            maintenance.textContent = materialData.maintenance;
+            temp.textContent = materialData.temp;
+            finish.textContent = materialData.finish;
+            applications.textContent = materialData.applications;
+        }
+
+        // Set initial material info on page load
+        window.onload = function() {
+            updateMaterialInfo(1);
+            updateMaterialInfo(2);
+            updateMaterialInfo(3);
+        };
+    </script>
+</body>
+</html>

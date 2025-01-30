@@ -6084,12 +6084,12 @@ figure {
     transform: scale(1.05)
 }
 
-.project-two__content h5 a {
+.project-two__content h5 {
     color: var(--white);
     text-transform: uppercase
 }
 
-.project-two__content h5 a:hover {
+.project-two__content h5:hover {
     color: var(--theme-color1)
 }
 

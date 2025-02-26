@@ -215,20 +215,60 @@
         </section>
         <!-- Feature area end here -->
 
-        <!-- Offer area start here -->
+        <!-- Comparador area start here -->
         <section class="offer-area pt-120 pb-120">
             <div class="container">
                 <div class="section-header text-center mb-80">
                     <h4 class="wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">Comparador</h4>
                     <h2 class="wow splt-txt" data-splitting>Compará hasta 3 materiales simultáneamente y encontrá la mejor opción para tu proyecto.</h2>
                 </div>
-                <div style="display: flex; justify-content: center; align-items: center;">
-                    <img src="/assets/images/banner/comparador.png" alt="" style="width: 85%;">
+                <div style="display: flex; justify-content: center; align-items: center; position: relative;">
+                    <img src="/assets/images/banner/comparador.png" alt="" style="width: 85%; border-radius: 10px;">
+                    
+                    <!-- Banner oscuro con efecto -->
+                    <div class="banner-overlay">
+                        <span class="coming-soon">PRÓXIMAMENTE</span>
+                    </div>
                 </div>
-                
             </div>
         </section>
-        <!-- Offer area end here -->
+        
+        <style>
+            .banner-overlay {
+                position: absolute;
+                width: 100%;
+                background: #383838;
+                color: white;
+                font-size: 2.5rem;
+                font-weight: bold;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 25px 0;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+                animation: fadeIn 1s ease-out;
+                
+            }
+        
+            .coming-soon {
+                font-family: 'Poppins', sans-serif;
+                letter-spacing: 2px;
+                color: white;
+                animation: glowText 1.8s infinite alternate;
+                
+            }
+        
+            @keyframes fadeIn {
+                from { opacity: 0; transform: scale(0.9); }
+                to { opacity: 1; transform: scale(1); }
+            }
+        
+            @keyframes glowText {
+                from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+                to { text-shadow: 0 0 15px rgba(255, 255, 255, 0.7); }
+            }
+        </style>
+        <!-- Comparador area end here -->
     </main>
 
     <!-- Main Footer -->

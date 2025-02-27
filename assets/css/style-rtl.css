@@ -1,11 +1,5 @@
 /*-----------------------------------------------------------------
 
-Template Name: Innovatek - interior HTML Template
-Author:  ThemeMascot
-Author URI: https://themeforest.net/user/thememascot/portfolio
-Version: 1.0.0
-Description: Innovatek - interior HTML5 Template
-
 -------------------------------------------------------------------
 CSS TABLE OF CONTENTS
 -------------------------------------------------------------------

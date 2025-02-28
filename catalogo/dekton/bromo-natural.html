@@ -107,8 +107,14 @@
     <!-- Mouse cursor area start here -->
     <div class="mouse-cursor cursor-outer"></div>
     <div class="mouse-cursor cursor-inner"></div>
+    <style>
+        @media (max-width: 99999px) { /* Oculta en móviles y tablets */
+            .mouse-cursor {
+                display: none !important;
+            }
+        }
+    </style>
     <!-- Mouse cursor area end here -->
-
     <!-- Header area start here -->
     <header class="header-area header-two-area">
         <div class="container">

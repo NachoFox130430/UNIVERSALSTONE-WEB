@@ -2504,7 +2504,10 @@ figure {
     font-weight: 700;
     font-family: var(--font-title);
     text-align: center;
-    user-select: none
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media(max-width: 991px) {
@@ -2568,10 +2571,16 @@ figure {
     color: var(--theme-color1)
 }
 
+#preloader .animation-preloader .txt-loading .word {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap; /* Evita que las palabras se corten */
+}
+
 @media(max-width: 991px) {
-    #preloader p {
-        font-size:14px;
-        margin-top: 10px
+    #preloader .animation-preloader .txt-loading {
+        font-size: 40px;
+        line-height: 50px;
     }
 }
 

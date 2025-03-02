@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Formulario de contacto</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .form-container {
+            position: relative;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Barra de progreso */
+        .progress-bar-container {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #28a745;
+            border-radius: 5px;
+        }
+
+        /* Estilo para el mensaje de éxito */
+        .resultado {
+            display: none;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #28a745; /* Fondo verde */
+            color: white; /* Texto blanco */
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px; /* Ancho máximo */
+            margin: 20px auto; /* Centrado en la pantalla */
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            position: absolute;
+            top: -60px; /* Ubicar encima del formulario */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Estilos para el formulario */
+        form fieldset {
+            margin: 10px 0;
+        }
+
+        form input, form textarea, form button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        form input[type="text"], form input[type="email"] {
+            background-color: #f9f9f9;
+        }
+
+        form textarea {
+            background-color: #f9f9f9;
+            resize: vertical;
+            height: 150px;
+        }
+
+        /* Botón de enviar */
+        #contact-submit {
+            background-color: #4CAF50; /* Fondo verde por defecto */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Estilos para cuando el botón esté en "Enviado" */
+        #contact-submit.sent {
+            background-color: #28a745 !important; /* Fondo verde más oscuro cuando se envía */
+            color: white; /* Asegurarse que el texto siga siendo blanco */
+        }
+
+        /* Animación de fadeIn */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Formulario -->
+    <div id="form-container" class="form-container">
+        <form id="contact" method="post">
+            <h3>Comunícate con nosotros</h3>
+            <fieldset>
+                <input name="nombre" placeholder="Tu nombre" type="text" tabindex="1" required autofocus>
+            </fieldset>
+            <fieldset>
+                <input name="email" placeholder="Tu email" type="email" tabindex="2" required>
+            </fieldset>
+            <fieldset>
+                <textarea name="mensaje" placeholder="Escribe tu mensaje...." tabindex="5" required></textarea>
+            </fieldset>
+            <fieldset>
+                <button name="submit" type="submit" id="contact-submit" data-submit="...Enviar">Enviar</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- Barra de progreso -->
+    <div id="progress-bar-container" class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar"></div>
+    </div>
+
+    <!-- Mensaje de "Éxito" -->
+    <div id="resultado" class="resultado">Formulario enviado correctamente</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#contact').on('submit', function(e) {
+        e.preventDefault(); // Evita el comportamiento por defecto de envío del formulario
+
+        // Desactivar el botón mientras se procesa
+        $('#contact-submit').attr('disabled', true).text('Enviando...');
+
+        // Mostrar la barra de progreso
+        $('#progress-bar-container').show();
+        $('#progress-bar').css('width', '0%'); // Resetear la barra de progreso
+        $('#progress-bar').animate({ width: '100%' }, 5000, function() {
+            // Mostrar el mensaje de éxito una vez que la barra se complete
+            $('#resultado').fadeIn(300).css('opacity', 1);
+
+            // Cambiar el texto del botón a "Enviado" y poner fondo verde
+            $('#contact-submit').addClass('sent').text('Mensaje enviado correctamente').attr('disabled', true);
+        });
+
+        // Esperar 10 segundos antes de reiniciar el formulario
+        setTimeout(function() {
+            // Resetear todo
+            $('#contact')[0].reset(); // Resetear el formulario
+            $('#contact-submit').removeClass('sent').attr('disabled', false).text('Enviar'); // Volver a habilitar el botón
+            $('#resultado').fadeOut(500); // Ocultar el mensaje de éxito
+            $('#progress-bar-container').fadeOut(500); // Ocultar la barra de progreso
+            $('#progress-bar').css('width', '0%'); // Resetear la barra de progreso
+        }, 10000); // Espera 10 segundos antes de reiniciar
+    });
+});
+</script>
+
+</body>
+</html>

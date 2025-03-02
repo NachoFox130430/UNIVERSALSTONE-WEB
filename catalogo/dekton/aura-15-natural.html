@@ -79,6 +79,48 @@
     </div>
     <!-- Preloader area end -->
 
+    <!-- Mouse cursor area start here -->
+    <div class="mouse-cursor cursor-outer"></div>
+    <div class="mouse-cursor cursor-inner"></div>
+    <style>
+        @media (max-width: 99999px) { /* Oculta en móviles y tablets */
+            .mouse-cursor {
+                display: none !important;
+            }
+        }
+    </style>
+    <!-- Mouse cursor area end here -->
+
+    <!-- Header area start here -->
+    <header class="header-area header-two-area">
+        <div class="container">
+            <div class="header-two__main">
+                <a href="/index.html" class="logo">
+                    <img src="/assets/images/logo/logo.png" alt="logo"> 
+                </a>
+                <div class="main-menu">
+                    <nav>
+                        <ul>
+                            <li><a href="/index.html">Inicio</a></li>
+                            <li><a href="/nosotros.html">Nosotros</a></li>
+                            <li><a href="/catalogo.html">Catálogo</a></li>
+                            <li><a href="/servicio.html">Servicio</a></li>
+                            <li><a href="/comparador.html">Comparador</a></li>
+                            <li><a href="/contacto.html">Contacto</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <button class="menubars d-inline-block d-lg-none" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#menubar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Header area end here -->
+
     <!-- Sidebar area start here -->
     <div class="sidebar-area offcanvas offcanvas-end" id="menubar">
         <div class="offcanvas-header">

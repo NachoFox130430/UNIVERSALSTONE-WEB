@@ -20,6 +20,8 @@ $smtpClave = "Universal/Stone/2025";
 $emailDestino = "marmoleriauniversalstone@gmail.com"; 
 
 $mail = new PHPMailer();
+$mail->SMTPDebug = 2;
+$mail->Debugoutput = 'html';
 $mail->IsSMTP();
 $mail->SMTPAuth = true;
 $mail->Port = 465; 
@@ -56,6 +58,8 @@ $estadoEnvio = $mail->Send();
 if($estadoEnvio){
     // Enviar correo de confirmación al cliente
     $mailCliente = new PHPMailer();
+    $mailCliente->SMTPDebug = 2;
+    $mailCliente->Debugoutput = 'html';
     $mailCliente->IsSMTP();
     $mailCliente->SMTPAuth = true;
     $mailCliente->Port = 465; 

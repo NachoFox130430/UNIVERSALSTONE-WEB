@@ -11,12 +11,10 @@ $nombre = $_POST["nombre"];
 $email = $_POST["email"];
 $mensaje = $_POST["mensaje"];
 
-// Datos SMTP de Donweb
-$smtpHost = "c2760921.ferozo.com";  // Host SMTP de Ferozo
+$smtpHost = "c2760921.ferozo.com";  
 $smtpUsuario = "contacto@universalstone.com.ar";
 $smtpClave = "Universal/Stone/2025";
 
-// Email donde se enviarán los datos del formulario
 $emailDestino = "marmoleriauniversalstone@gmail.com"; 
 
 $mail = new PHPMailer();
@@ -29,18 +27,16 @@ $mail->SMTPSecure = 'ssl';
 $mail->IsHTML(true); 
 $mail->CharSet = "utf-8";
 
-// Configuración SMTP
 $mail->Host = $smtpHost; 
 $mail->Username = $smtpUsuario; 
 $mail->Password = $smtpClave;
 
-// Datos del email
+
 $mail->From = $smtpUsuario;
 $mail->FromName = $nombre;
 $mail->AddAddress($emailDestino); 
 $mail->Subject = "Nuevo mensaje desde el formulario de Universal Stone"; 
 
-// Establecer el campo Reply-To con el correo del usuario
 $mail->AddReplyTo($email, $nombre);
 
 $mensajeHtml = nl2br($mensaje);
@@ -52,11 +48,10 @@ $mail->Body = "Mensaje de: <strong>{$nombre}</strong> <br>
 
 $mail->AltBody = "{$mensaje} \n\n Enviado desde la web de Universal Stone"; 
 
-// Enviar el email al administrador
 $estadoEnvio = $mail->Send(); 
 
 if($estadoEnvio){
-    // Enviar correo de confirmación al cliente
+
     $mailCliente = new PHPMailer();
     $mailCliente->SMTPDebug = 2;
     $mailCliente->Debugoutput = 'html';
@@ -72,13 +67,11 @@ if($estadoEnvio){
     $mailCliente->Username = $smtpUsuario; 
     $mailCliente->Password = $smtpClave;
 
-    // Datos del email de confirmación
     $mailCliente->From = $smtpUsuario;
     $mailCliente->FromName = 'Universal Stone';
     $mailCliente->AddAddress($email); 
     $mailCliente->Subject = "Confirmación de recepción de mensaje"; 
 
-    // Mensaje para el cliente
     $mensajeCliente = "
     <html>
     <head>
@@ -97,7 +90,6 @@ if($estadoEnvio){
     $mailCliente->Body = $mensajeCliente;
     $mailCliente->AltBody = "Hola, {$nombre}\nHemos recibido tu mensaje correctamente. Nuestro equipo se pondrá en contacto contigo a la brevedad.\nGracias por escribirnos.\nSaludos cordiales, El equipo de Universal Stone";
 
-    // Enviar el correo al cliente
     if($mailCliente->Send()) {
         echo json_encode(['status' => 'success', 'message' => 'El correo fue enviado correctamente.']);
     } else {

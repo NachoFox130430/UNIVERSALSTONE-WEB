@@ -11,9 +11,9 @@ $nombre = $_POST["nombre"];
 $email = $_POST["email"];
 $mensaje = $_POST["mensaje"];
 
-$smtpHost = "smtp.gmail.com";  
-$smtpUsuario = "marmoleriauniversalstone@gmail.com";
-$smtpClave = "xgblxszkxxzphjsf";
+$smtpHost = "c2760921.ferozo.com";  
+$smtpUsuario = "contacto@universalstone.com.ar";
+$smtpClave = "Universal/Stone/2025";
 
 $emailDestino = "marmoleriauniversalstone@gmail.com"; 
 

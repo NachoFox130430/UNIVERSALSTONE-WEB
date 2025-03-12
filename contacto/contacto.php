@@ -99,4 +99,3 @@ if($estadoEnvio){
     echo json_encode(['status' => 'error', 'message' => 'Ocurrió un error inesperado al enviar el correo al administrador.']);
 }
 ?>
-

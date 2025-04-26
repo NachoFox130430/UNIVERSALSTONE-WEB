@@ -16,11 +16,11 @@ $mensaje = $_POST["mensaje"];
 
 // Datos de la cuenta de correo utilizada para enviar vía SMTP
 $smtpHost = "c2760921.ferozo.com";  // Dominio alternativo brindado en el email de alta 
-$smtpUsuario = "contacto@universalstone.com.ar";  // Mi cuenta de correo
-$smtpClave = "Universal/Stone/2025";  // Mi contraseña
+$smtpUsuario = "presupuestos@universalstone.com.ar";  // Mi cuenta de correo
+$smtpClave = "@RafaPablo2025";  // Mi contraseña
 
 // Email donde se enviaran los datos cargados en el formulario de contacto
-$emailDestino = "marmoleriauniversalstone@gmail.com";
+$emailDestino = "nachofox05@gmail.com";
 
 $mail = new PHPMailer();
 $mail->IsSMTP();

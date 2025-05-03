@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizador de Mármol AR</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    #menu {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Menú para elegir material -->
+  <div id="menu">
+    <label for="material">Elegí tipo de mármol:</label>
+    <select id="material">
+      <option value="blanco">Mármol Blanco</option>
+      <option value="negro">Mármol Negro</option>
+      <option value="gris">Mármol Gris</option>
+    </select>
+  </div>
+
+  <!-- Escena AR -->
+  <a-scene embedded arjs>
+    <a-assets>
+      <img id="marmolBlanco" src="https://assetstools.cosentino.com/api/v1/bynder/color/PI2/detalle/PI2-thumb.jpg" />
+      <img id="marmolNegro" src="https://assetstools.cosentino.com/api/v1/bynder/color/NEG/detalle/NEG-thumb.jpg" />
+      <img id="marmolGris" src="https://assetstools.cosentino.com/api/v1/bynder/color/LJU/detalle/LJU-thumb.jpg" />
+    </a-assets>
+
+    <!-- Marcador de AR -->
+    <a-marker preset="hiro">
+      <a-plane id="mesada" 
+               width="1" 
+               height="0.6" 
+               rotation="-90 0 0" 
+               material="src: #marmolBlanco; repeat: 2 2;">
+      </a-plane>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    // Selección de material de mármol
+    const selector = document.getElementById('material');
+    const mesada = document.getElementById('mesada');
+
+    selector.addEventListener('change', () => {
+      const selectedMaterial = selector.value;
+      mesada.setAttribute('material', 'src', `#marmol${selectedMaterial.charAt(0).toUpperCase() + selectedMaterial.slice(1)}`);
+    });
+  </script>
+</body>
+</html>
